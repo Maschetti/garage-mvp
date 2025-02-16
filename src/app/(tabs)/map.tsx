@@ -1,13 +1,14 @@
+import FloorMap from "@/src/components/FloorMap";
 import { FourthFloor, Ground, SecondFloor, ThirdFloor } from "@/src/constants/ParkSports";
 import { Picker } from "@react-native-picker/picker";
 import { useState } from "react";
-import { Text, View } from "react-native";
+import { View } from "react-native";
 
 export default function Map() {
   const [selectedFloor, setSelectedFloor] = useState("ground");
 
   return (
-    <View>
+    <View className="flex-1">
       <Picker
         selectedValue={selectedFloor}
         onValueChange={(itemValue) => setSelectedFloor(itemValue)}
@@ -19,55 +20,14 @@ export default function Map() {
         <Picker.Item label="4º Andar" value="fourth" />
       </Picker>
 
-      <View className="flex flex-col gap-2 flex-wrap max-h-96 w-full items-center">
-        {
-          selectedFloor === 'ground' &&
-          Ground.map((spot) => (
-            <View
-              className="size-4"
-              key={selectedFloor + spot.spotNumber}
-              style={{ backgroundColor: spot.state === 'free' ? 'green' : 'red' }}
-            >
-              <Text>{spot.spotNumber}</Text>
-            </View>
-          ))
-        }
-        {
-          selectedFloor === 'second' &&
-          SecondFloor.map((spot) => (
-            <View
-              className="size-4"
-              key={selectedFloor + spot.spotNumber}
-              style={{ backgroundColor: spot.state === 'free' ? 'green' : 'red' }}
-            >
-              <Text>{spot.spotNumber}</Text>
-            </View>
-          ))
-        }
-        {
-          selectedFloor === 'third' &&
-          ThirdFloor.map((spot) => (
-            <View
-              className="size-4"
-              key={selectedFloor + spot.spotNumber}
-              style={{ backgroundColor: spot.state === 'free' ? 'green' : 'red' }}
-            >
-              <Text>{spot.spotNumber}</Text>
-            </View>
-          ))
-        }
-        {
-          selectedFloor === 'fourth' &&
-          FourthFloor.map((spot) => (
-            <View
-              className="size-4"
-              key={selectedFloor + spot.spotNumber}
-              style={{ backgroundColor: spot.state === 'free' ? 'green' : 'red' }}
-            >
-              <Text>{spot.spotNumber}</Text>
-            </View>
-          ))
-        }
+      <View className="flex-1 h-full w-full">
+
+
+        
+        {selectedFloor === 'ground' && <FloorMap floor={Ground} cols={3} rows={3}/>}
+        {selectedFloor === 'second' && <FloorMap floor={SecondFloor} cols={5} rows={13}/>}
+        {selectedFloor === 'third' && <FloorMap floor={ThirdFloor} cols={4} rows={12}/>}
+        {selectedFloor === 'fourth' && <FloorMap floor={FourthFloor} cols={6} rows={4}/>}
       </View>
     </View>
   )
