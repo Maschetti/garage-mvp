@@ -47,7 +47,7 @@ Antes de começar, certifique-se de ter instalado em sua máquina:
 Caso ainda não tenha o código, clone o repositório e acesse a pasta do projeto:  
 
 ```
-git clone [https://github.com/seu-usuario/seu-repositorio.git](https://github.com/Maschetti/garage-mvp.git)
+git clone https://github.com/Maschetti/garage-mvp.git
 ```
 
 ```
@@ -115,12 +115,29 @@ tipo: descrição breve
 ```
 
 ### Tipos 
-- feat: adição de funcionalidade, componente ou função.
-- fix: correção de algum erro.
-- refactor: refatoração de algum componente ou parte do código.
-- chore: para atualização de dependencias, mudar pasta de local e outras tarefas pequenas.
-- style: modificções exclusivamente na parte visual.
+- **feat**: adição de funcionalidade, componente ou função.
+- **fix**: correção de erro.
+- **refactor**: refatoração de algum componente ou parte do código.
+- **chore**: atualização de dependências, mudanças de pasta e outras tarefas menores.
+- **style**: modificações exclusivamente na parte visual.
 
+## Problemas
 
+### Redirecionamento
 
+- Criação de uma página para gerenciamento de um único veículo, sem nenhum redirecionamento não iniciado pelo usuário.
+- Remoção dos redirecionamentos de erro ou de conclusão.
+- Quando o carro já está cadastrado, o usuário é redirecionado para a página do veículo.
 
+### Queries desnecessárias
+
+- O protótipo evita ao máximo voltar para a página inicial sem necessidade, pois isso reduz o número de queries ao banco de dados e acelera o processo.
+
+### Estados do carro
+
+- Criação de um novo modelo de estados do carro, considerando que o veículo pode estar em quatro possíveis estados: fora do sistema, na recepção, estacionado ou com o cliente. Esse novo entendimento simplifica o gerenciamento de um mesmo veículo e abrange mais cenários, como: o cliente solicitar o carro e desistir de sair, ou o cliente chegar, fazer check-in e já sair com o carro para a rua.
+
+### Gerenciamento de vagas
+
+- Foi considerado um banco de dados relacional no qual a relação entre Veículo e Vaga é de um para um. Isso impossibilita a superlotação da garagem e permite uma distribuição e visualização mais precisa do espaço disponível.
+- Foi criada uma seção onde o manobrista pode visualizar o pátio e, ao identificar uma vaga livre ou ocupada, simplesmente clicar em um botão na tela para atualizar os estados do carro e da vaga.
